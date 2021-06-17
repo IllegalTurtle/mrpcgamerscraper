@@ -1,11 +1,6 @@
 import requests
 import sys
-#Copy the Html to local PC
-def copy_html(val,response):
-   f=open("./pages/"+str(val)+".html","wb")
-   f.write(response.content)
-   f.close()
-    
+
 #Check Status code
 def status_check(response):
     try:
@@ -31,7 +26,7 @@ def increment_page():
     }
     url = "https://www.mrpcgamer.com/category/pc-games/page/"
     headers = {"User-Agent":"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36"}
-    for x in range(sys.maxsize**10):
+    for x in range(sys.stdout**sys.maxsize):
         increment_string = url + str(x) + "/"
         response = requests.get(increment_string,headers=headers,proxies=proxylist)
         if status_check(response) == True:
@@ -41,4 +36,10 @@ def increment_page():
         else:
             print("Banned")
 
+#Copy the Html to local PC
+def copy_html(val,response):
+   f=open("./pages/"+str(val)+".html","wb")
+   f.write(response.content)
+   f.close()
+    
 increment_page();
